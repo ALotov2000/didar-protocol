@@ -1,0 +1,11 @@
+{
+  "name": "didar-protocol",
+  "private": true,
+  "scripts": {
+    "lint:docs": "bash .claude/hooks/check-docs.sh"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^12.2.0",
+    "markdownlint-cli2": "^0.24.0"
+  }
+}
