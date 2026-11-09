@@ -78,4 +78,5 @@ sequenceDiagram
 
 | ID | Title | Description |
 | -- | ----- | ----------- |
-| PR-1 | Low overhead | TBD. Targets for added latency, header size, and throughput are not defined yet. |
+| PR-1 | Low size overhead | Didar adds at most 4 bytes per datagram with encryption disabled, and at most 32 bytes per datagram with encryption enabled (header, nonce, and authentication tag together), on top of the 8-byte UDP header. The handshake is not counted. |
+| PR-2 | Low demultiplexing time | Demultiplexing adds at most 50 µs at p99 per datagram with encryption disabled, and at most 100 µs at p99 with encryption enabled, measured over loopback with 1200-byte payloads on one core of a commodity x86-64 machine. |
