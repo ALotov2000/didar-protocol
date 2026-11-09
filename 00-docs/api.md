@@ -65,7 +65,7 @@ Maps local ports to target ports. It listens only on `127.0.0.1`.
 | `max_flows` | `--max-flows <n>` | 4096 | Size of the flow table. |
 | `idle_sec` | `--idle-sec <n>` | 60 | Idle seconds before a flow is closed. |
 
-Flags override the config file.
+Flags override single-value keys from the config file. List keys (`allow`, `map`) add to the values from the file.
 
 ```ini
 # didar-agent.conf
@@ -130,7 +130,7 @@ Listens on the didar port and forwards to allowed target ports on `127.0.0.1`.
 | `max_flows` | `--max-flows <n>` | 65536 | Size of the flow table per thread. |
 | `idle_sec` | `--idle-sec <n>` | 60 | Idle seconds before a flow is closed. |
 
-Flags override the config file.
+Flags override single-value keys from the config file. List keys (`allow`, `map`) add to the values from the file.
 
 ```ini
 # didard.conf

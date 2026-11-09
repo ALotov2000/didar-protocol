@@ -86,6 +86,7 @@ The header with `type = ERROR`, followed by a 1-byte code. Only the code is sent
 - **Allow-list:** a datagram for a port not in `allow` is answered with `PORT_NOT_ALLOWED` and no flow is created.
 - **Errors:** `ECONNREFUSED` on a proxy socket (ICMP port unreachable) closes the flow and sends `TARGET_UNREACHABLE`.
 - **Idle timeout:** flows unused for `idle_sec` are closed.
+- **Oversized datagrams:** a client datagram larger than 1472 bytes is answered with `MALFORMED`. A reply from a handler too large for one UDP datagram with the didar header is dropped.
 
 ## didar-agent
 
