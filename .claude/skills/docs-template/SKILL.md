@@ -79,6 +79,10 @@ Exactly two `##` sections, in this order: `Client` and `Server`.
 - `## Server` has `### didard`.
 - Each program section has a config table (`Config key`, `Flag`, `Default`, `Description`), an example config in an `ini` block, and `#### Setup` and `#### Forwarding` subsections, **each with a mermaid `sequenceDiagram`**.
 
+## `guide.md` — how to use didar
+
+A task-oriented walkthrough for users. One overview mermaid `flowchart` after the intro, then numbered `##` sections in the order a user needs them: `1. Build`, `2. Run the server`, `3. Use it from an existing app`, `4. Use it from your own code`, `5. Troubleshooting` (table: `Message`, `Cause`, `Fix`). No test instructions: the guide is for users, not developers. Every command and code example must be verified against the current build before it is written. Option details belong in `api.md`; link there instead of repeating them.
+
 ## `prior-art.md` — existing solutions
 
 An intro line with the date checked and the conclusion, then `## Projects` and `## Standards`, each a table with the columns `Project` (or `Standard`), then one column per requirement compared (e.g. `FR-1 single-port demultiplexing`). Name links go in the first column. End with `## Takeaways` as a bullet list. When requirements change, update the columns.
