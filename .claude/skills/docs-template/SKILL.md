@@ -62,3 +62,7 @@ sequenceDiagram
 ````
 
 Security and performance requirements do not need diagrams.
+
+## `prior-art.md` — existing solutions
+
+An intro line with the date checked and the conclusion, then `## Projects` and `## Standards`, each a table with the columns `Project` (or `Standard`), then one column per requirement compared (e.g. `FR-1 single-port demultiplexing`). Name links go in the first column. End with `## Takeaways` as a bullet list. When requirements change, update the columns.
