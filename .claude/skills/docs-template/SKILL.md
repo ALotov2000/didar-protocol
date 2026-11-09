@@ -63,6 +63,22 @@ sequenceDiagram
 
 Security and performance requirements do not need diagrams.
 
+## `architecture.md` — how didar is built
+
+Sections in this order: intro paragraph, `## Constraints` (table: `Constraint`, `Decision`), `## Components` (table: `Component`, `Kind`, `Role`, plus a mermaid `flowchart`), `## Wire Format` (byte layouts in `text` code blocks, field and error-code tables), one `##` section per program (`## didard`, `## didar-agent`) as bullet lists, and `## Entity Relationships`.
+
+**`## Entity Relationships` must contain a mermaid `erDiagram`** with relationships and attributes for every entity. Update it whenever a component, table, or relationship changes.
+
+Unsettled designs are marked "(phase N draft)" in the heading. Decisions still open go in the `Constraints` table as "Open until ...".
+
+## `api.md` — how to set up and use didar
+
+Exactly two `##` sections, in this order: `Client` and `Server`.
+
+- `## Client` has `### libdidar` (signatures in a `cpp` block, a table: `Function`, `Returns`, `Description`, and a usage `sequenceDiagram`) and `### didar-agent`.
+- `## Server` has `### didard`.
+- Each program section has a config table (`Config key`, `Flag`, `Default`, `Description`), an example config in an `ini` block, and `#### Setup` and `#### Forwarding` subsections, **each with a mermaid `sequenceDiagram`**.
+
 ## `prior-art.md` — existing solutions
 
 An intro line with the date checked and the conclusion, then `## Projects` and `## Standards`, each a table with the columns `Project` (or `Standard`), then one column per requirement compared (e.g. `FR-1 single-port demultiplexing`). Name links go in the first column. End with `## Takeaways` as a bullet list. When requirements change, update the columns.
