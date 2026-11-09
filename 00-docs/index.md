@@ -10,3 +10,9 @@ Didar is an application networking protocol on top of UDP. Clients send all data
    2. [Security Requirements](requirements.md#security-requirements)
    3. [Performance Requirements](requirements.md#performance-requirements)
 3. [Prior Art](prior-art.md) — existing projects and standards compared with the requirements.
+4. [Architecture](architecture.md) — components, wire format, internals, and entity relationships.
+   1. [Wire Format](architecture.md#wire-format)
+   2. [Entity Relationships](architecture.md#entity-relationships)
+5. [API](api.md) — how to set up and use each side.
+   1. [Client](api.md#client)
+   2. [Server](api.md#server)
