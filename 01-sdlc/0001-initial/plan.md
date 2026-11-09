@@ -1144,7 +1144,7 @@ diff --git a/01-code/tests/harness.h b/01-code/tests/harness.h
 new file mode 100644
 --- /dev/null
 +++ b/01-code/tests/harness.h
-@@ -0,0 +1,206 @@
+@@ -0,0 +1,207 @@
 +#pragma once
 +
 +#include <arpa/inet.h>
@@ -1296,8 +1296,9 @@ new file mode 100644
 +        p.log[p.log_len] = '\0';
 +        if (strstr(p.log, needle)) return true;
 +        if (waited >= timeout_ms) return false;
-+        if (readable(p.stderr_fd, 10)) {
-+            ssize_t n = read(p.stderr_fd, p.log + p.log_len, sizeof p.log - 1 - p.log_len);
++        size_t room = p.log_len < sizeof p.log - 1 ? sizeof p.log - 1 - p.log_len : 0;
++        if (room > 0 && readable(p.stderr_fd, 10)) {
++            ssize_t n = read(p.stderr_fd, p.log + p.log_len, room);
 +            if (n > 0) p.log_len += size_t(n);
 +        }
 +    }
