@@ -81,7 +81,7 @@ Exactly two `##` sections, in this order: `Client` and `Server`.
 
 ## `guide.md` — how to use didar
 
-A task-oriented walkthrough for users. One overview mermaid `flowchart` after the intro, then numbered `##` sections in the order a user needs them: `1. Build`, `2. Run the server`, `3. Use it from an existing app`, `4. Use it from your own code`, `5. Troubleshooting` (table: `Message`, `Cause`, `Fix`). No test instructions: the guide is for users, not developers. Every command and code example must be verified against the current build before it is written. Option details belong in `api.md`; link there instead of repeating them.
+A task-oriented walkthrough for users. One overview mermaid `flowchart` after the intro, then numbered `##` sections in the order a user needs them: `1. Build`, `2. Run the server`, `3. Use it from an existing app`, `4. Use it from your own code`, `5. Run with Docker` (with a table of every environment variable: `Variable`, `Image`, `Default`, `Flag`), `6. Troubleshooting` (table: `Message`, `Cause`, `Fix`). No test instructions: the guide is for users, not developers. Every command and code example must be verified against the current build before it is written. Option details belong in `api.md`; link there instead of repeating them.
 
 ## `prior-art.md` — existing solutions
 
