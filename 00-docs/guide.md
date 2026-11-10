@@ -129,7 +129,57 @@ Things to know:
 - A payload can be at most 1468 bytes; larger sends return `-EMSGSIZE`.
 - Errors from the server arrive through `didar_recv` as negative codes. `didar_strerror` turns any negative return value into a message.
 
-## 5. Troubleshooting
+## 5. Run with Docker
+
+`01-code/Dockerfile` builds one image per program. The build runs the requirement tests and fails if any of them fail.
+
+```bash
+docker build --target didard -t didard 01-code
+docker build --target didar-agent -t didar-agent 01-code
+```
+
+Both images are configured with environment variables instead of flags:
+
+| Variable | Image | Default | Flag |
+| -------- | ----- | ------- | ---- |
+| `DIDARD_PORT` | didard | 9000 | `--port` |
+| `DIDARD_ALLOW` | didard | Required | `--allow`, comma-separated, e.g. `7000,7001` |
+| `DIDARD_MAX_FLOWS` | didard | 65536 | `--max-flows` |
+| `DIDARD_IDLE_SEC` | didard | 60 | `--idle-sec` |
+| `DIDAR_AGENT_SERVER` | didar-agent | Required | `--server`, e.g. `203.0.113.5:9000` |
+| `DIDAR_AGENT_MAP` | didar-agent | Required | One `--map` per space-separated pair, e.g. `"5000:7000 5001:7001"` |
+| `DIDAR_AGENT_MAX_FLOWS` | didar-agent | 4096 | `--max-flows` |
+| `DIDAR_AGENT_IDLE_SEC` | didar-agent | 60 | `--idle-sec` |
+
+didard only forwards to `127.0.0.1` and didar-agent only listens on `127.0.0.1`, so each container must share the network of what it talks to.
+
+On a Linux server, use the host network:
+
+```bash
+docker run -d --network host -e DIDARD_ALLOW=7000 didard
+```
+
+When your service runs in a container, attach didard to that container's network instead:
+
+```bash
+docker run -d --name my-service my-service-image
+docker run -d --network container:my-service -e DIDARD_ALLOW=7000 didard
+```
+
+The agent works the same way. With `--network host`, apps on the client machine use `127.0.0.1:5000`:
+
+```bash
+docker run -d --network host \
+  -e DIDAR_AGENT_SERVER=203.0.113.5:9000 \
+  -e DIDAR_AGENT_MAP="5000:7000 5001:7001" \
+  didar-agent
+```
+
+On Docker Desktop, `--network host` means the Docker VM, not your machine, so use the `--network container:<name>` form there.
+
+If a required variable is missing, the container exits with a message such as `DIDARD_ALLOW: set DIDARD_ALLOW, e.g. 7000,7001`.
+
+## 6. Troubleshooting
 
 | Message | Cause | Fix |
 | ------- | ----- | --- |
